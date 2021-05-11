@@ -54,7 +54,7 @@ export function SurveyPage() {
     var model = new Survey.Model(json);
     return (
     <div className="container">
-        <h2>SurveyJS Library - a sample survey below</h2>
+        <h2>问卷案例</h2>
         <Survey.Survey
             model={model}
             onComplete={onComplete}

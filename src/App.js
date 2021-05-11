@@ -17,19 +17,17 @@ export default function SurveyJSReactApplication() {
       <div>
         <nav className="navbar navbar-default">
           <div className="container-fluid">
-            <div className="navbar-header">
-              <a className="navbar-brand" href="/">
-                SurveyJS + ReactJS
-              </a>
-            </div>
+            <h2 className="navbar-header">
+              前端的艺术
+            </h2>
             <ul className="nav navbar-nav">
-              <li>
+              {/* <li>
                 <Link to="/">Home</Link>
-              </li>
+              </li> */}
               <li>
                 <Link to="/survey">Survey</Link>
               </li>
-              <li>
+              {/* <li>
                 <Link to="/creator">SurveyJS Creator</Link>
               </li>
               <li>
@@ -45,19 +43,19 @@ export default function SurveyJSReactApplication() {
                 <Link to="/analyticsdatatables">
                   Results Table (IE Support)
                 </Link>
-              </li>
+              </li> */}
             </ul>
           </div>
         </nav>
 
         <Switch>
-          <Route exact path="/">
+          {/* <Route exact path="/">
             <HomePage />
-          </Route>
+          </Route> */}
           <Route path="/survey">
             <SurveyPage />
           </Route>
-          <Route path="/creator">
+          {/* <Route path="/creator">
             <CreatorPage />
           </Route>
           <Route path="/export">
@@ -71,7 +69,7 @@ export default function SurveyJSReactApplication() {
           </Route>
           <Route path="/analyticstabulator">
             <AnalyticsTabulatorPage />
-          </Route>
+          </Route> */}
         </Switch>
       </div>
     </Router>

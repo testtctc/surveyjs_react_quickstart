@@ -1,18 +1,14 @@
 export var json = {
-    title: "Product Feedback Survey Example",
+    title: "产品反馈",
     showProgressBar: "top",
     pages: [
       {
         elements: [
           {
-            type: "myquestion",
-            name: "cq1",
-            text: "Some Text"
-          },
-          {
-            type: "tagbox",
-            name: "position-tags",
-            title: "Choose job positions (Select2 Tagbox)...",
+            type: "radiogroup",
+            name: "position",
+            title: "请选择您的职业...",
+            colCount: 0,
             choices: [
               "1|Designer",
               "2|Front-end Developer",
@@ -23,57 +19,31 @@ export var json = {
           },
           {
             type: "dropdown",
-            name: "position-s2",
-            title: "Choose job position (Select2)...",
             renderAs: "select2",
-            choices: [
-              "1|Designer",
-              "2|Front-end Developer",
-              "3|Back-end Developer",
-              "4|Database Administrator",
-              "5|System Engineer"
-            ]
+            choicesByUrl: {
+              url: "https://restcountries.eu/rest/v1/all"
+            },
+            name: "countries",
+            title: '国籍'
           },
           {
-            type: "radiogroup",
-            name: "position",
-            title: "Choose job position (iCheck)...",
-            isRequired: true,
-            colCount: 0,
-            choices: [
-              "1|Designer",
-              "2|Front-end Developer",
-              "3|Back-end Developer",
-              "4|Database Administrator",
-              "5|System Engineer"
-            ]
-          },
-          {
-            type: "radiogroup",
-            name: "position-pc",
-            title: "Choose job position (Pretty checkbox)...",
-            isRequired: true,
-            renderAs: "prettycheckbox",
-            colCount: 0,
-            choices: [
-              "1|Designer",
-              "2|Front-end Developer",
-              "3|Back-end Developer",
-              "4|Database Administrator",
-              "5|System Engineer"
-            ]
+            name: "date",
+            type: "datepicker",
+            inputType: "date",
+            title: "您的出生日期",
+            dateFormat: "mm/dd/yy"
           },
           {
             type: "barrating",
             name: "barrating1",
             ratingTheme: "css-stars",
-            title: "Please rate the movie you've just watched",
+            title: "您对产品的评价",
             choices: ["1", "2", "3", "4", "5"]
           },
           {
             type: "imagepicker",
             name: "choosepicture",
-            title: "What animal would you like to see first ?",
+            title: "您最喜欢电影中的哪个场景",
             choices: [
               {
                 value: "lion",
@@ -99,113 +69,90 @@ export var json = {
           },
           {
             type: "bootstrapslider",
-            name: "bootstrapslider"
-          },
-          {
-            type: "dropdown",
-            renderAs: "select2",
-            choicesByUrl: {
-              url: "https://restcountries.eu/rest/v1/all"
-            },
-            name: "countries",
-            title: "Please select the country you have arrived from:"
+            name: "请您对背景音乐评分"
           },
           {
             type: "signaturepad",
             name: "sign",
-            title: "Please enter your signature"
+            title: "请您手写签名"
           },
           {
             type: "sortablelist",
             name: "lifepriopity",
-            title: "Life Priorities ",
-            isRequired: true,
+            title: "请对以下项目进行排序",
             colCount: 0,
-            choices: ["family", "work", "pets", "travels", "games"]
-          },
-          {
-            name: "date",
-            type: "datepicker",
-            inputType: "date",
-            title: "Your favorite date:",
-            dateFormat: "mm/dd/yy",
-            isRequired: true
+            choices: ["家庭", "工作", "宠物", "旅行", "游戏"]
           }
         ]
       },
       {
         questions: [
           {
-            type: "signaturepad",
-            width: "500px",
-            name: "Signature Pad - you can enter your signature here:"
-          },
-          {
             type: "matrix",
             name: "Quality",
             title:
-              "Please indicate if you agree or disagree with the following statements",
+              "您对以下观点是否赞成",
             columns: [
               {
                 value: 1,
-                text: "Strongly Disagree"
+                text: "强烈不赞成"
               },
               {
                 value: 2,
-                text: "Disagree"
+                text: "不赞成"
               },
               {
                 value: 3,
-                text: "Neutral"
+                text: "中立"
               },
               {
                 value: 4,
-                text: "Agree"
+                text: "同意"
               },
               {
                 value: 5,
-                text: "Strongly Agree"
+                text: "强烈同意"
               }
             ],
             rows: [
               {
-                value: "affordable",
-                text: "Product is affordable"
+                value: "本电影是可接受的",
+                text: "本电影是可接受的"
               },
               {
-                value: "does what it claims",
-                text: "Product does what it claims"
+                value: "本电影的演员颜值很高",
+                text: "本电影的演员颜值很高"
               },
               {
-                value: "better then others",
-                text: "Product is better than other products on the market"
+                value: "演员很用心",
+                text: "演员很用心"
               },
               {
-                value: "easy to use",
-                text: "Product is easy to use"
+                value: "我会向其他人推荐",
+                text: "我会向其他人推荐"
               }
             ]
           },
           {
             type: "rating",
             name: "satisfaction",
-            title: "How satisfied are you with the Product?",
-            mininumRateDescription: "Not Satisfied",
-            maximumRateDescription: "Completely satisfied"
+            title: "你喜欢这部电影吗?",
+            mininumRateDescription: "不喜欢",
+            maximumRateDescription: "很喜欢"
           },
           {
             type: "rating",
-            name: "recommend friends",
+            name: "向周围的人推荐次数",
             visibleIf: "{satisfaction} > 3",
             title:
-              "How likely are you to recommend the Product to a friend or co-worker?",
-            mininumRateDescription: "Will not recommend",
-            maximumRateDescription: "I will recommend"
+              "你会向其他人推荐吗？",
+            mininumRateDescription: "我不推荐",
+            maximumRateDescription: "我将推荐"
           },
           {
             type: "comment",
             name: "suggestions",
-            title: "What would make you more satisfied with the Product?"
+            title: "你觉得本电影还有什么需要改进的？"
           }
         ]
       },
@@ -214,36 +161,36 @@ export var json = {
           {
             type: "radiogroup",
             name: "price to competitors",
-            title: "Compared to our competitors, do you feel the Product is",
+            title: "相对于其他电影，您觉得本电影票价如何",
             choices: [
-              "Less expensive",
-              "Priced about the same",
-              "More expensive",
-              "Not sure"
+              "不贵",
+              "差不多",
+              "很贵",
+              "不确定"
             ]
           },
           {
             type: "radiogroup",
             name: "price",
-            title: "Do you feel our current price is merited by our product?",
+            title: "您觉得我们的产品物超所值吗",
             choices: [
-              "correct|Yes, the price is about right",
-              "low|No, the price is too low for your product",
-              "high|No, the price is too high for your product"
+              "我觉得刚好",
+              "我觉得很值",
+              "我觉得虚高"
             ]
           },
           {
             type: "multipletext",
             name: "pricelimit",
-            title: "What is the... ",
+            title: "您的承受能力",
             items: [
               {
                 name: "mostamount",
-                title: "Most amount you would every pay for a product like ours"
+                title: "最高价"
               },
               {
                 name: "leastamount",
-                title: "The least amount you would feel comfortable paying"
+                title: "最低价"
               }
             ]
           }
@@ -255,7 +202,7 @@ export var json = {
             type: "text",
             name: "email",
             title:
-              'Thank you for taking our survey. Please enter your email address, then press the "Submit" button.'
+              '请填写您的邮箱'
           }
         ]
       }
