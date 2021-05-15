@@ -26,6 +26,7 @@ const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const CompressionPlugin = require('compression-webpack-plugin')
 
 const postcssNormalize = require('postcss-normalize');
 
@@ -315,6 +316,12 @@ module.exports = function (webpackEnv) {
                   name: 'vendor',
                   chunks: 'initial',
                   priority: -10
+              },
+              widgets: {  //拆分第三方库（通过npm|yarn安装的库）
+                test: /surveyjs-widgets/,
+                  name: 'widgets',
+                  chunks: 'initial',
+                  priority: -8
               }
           }
       },
@@ -359,6 +366,7 @@ module.exports = function (webpackEnv) {
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding
         // guards against forgotten dependencies and such.
         PnpWebpackPlugin,
+
         // Prevents users from importing files from outside of src/ (or node_modules/).
         // This often causes confusion because we only process files within src/ with babel.
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
@@ -577,6 +585,7 @@ module.exports = function (webpackEnv) {
       ],
     },
     plugins: [
+      new CompressionPlugin,
       // Generates an `index.html` file with the <script> injected.
       new HtmlWebpackPlugin(
         Object.assign(
